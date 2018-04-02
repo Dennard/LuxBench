@@ -48,7 +48,7 @@ inline ListObject<T>* MyList<T>::begin()
 template<class T>
 inline ListObject<T>* MyList<T>::end()
 {
-  return backElement;
+  return backElement->prev;
 }
 
 template<class T>

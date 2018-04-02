@@ -11,6 +11,13 @@ public:
   ListObject<T>* next;
   ListObject<T>* prev;
 
+  void operator++();
 };
 
 #endif
+
+template<class T>
+inline void ListObject<T>::operator++()
+{
+  this = prev;
+}

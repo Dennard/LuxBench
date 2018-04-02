@@ -9,10 +9,9 @@ int main() {
   list.push_front(3);
   list.push_front(4);
 
-  std::cout << list.back() << std::endl;
-  std::cout << list.end()->next->value << std::endl;
-  std::cout << list.begin()->prev->value << std::endl;
-  std::cout << list.begin()->value << std::endl;
+  for (auto i = list.begin(); i != list.end(); i++) {
+    std::cout << i->value << std::endl;
+  }
 
   system("pause");
   return 0;
