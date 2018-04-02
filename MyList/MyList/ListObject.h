@@ -2,13 +2,12 @@
 #define LISTOBJECT_H
 
 template<class T>
-struct ListObject {
-  T value;
-  T* next;
-  T* prev;
+class ListObject {
+public:
+  ListObject() :next(nullptr), prev(nullptr) {}
+  T value = 0;
+  ListObject* next;
+  ListObject* prev;
 };
-
-
-
 
 #endif
