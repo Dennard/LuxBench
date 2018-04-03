@@ -9,8 +9,8 @@ int main() {
   list.push_front(3);
   list.push_front(4);
 
-  for (auto i = list.begin(); i != list.end(); i++) {
-    std::cout << i->value << std::endl;
+  for (auto j = list.begin(); j != list.end(); ++j) {
+    std::cout << j->value << std::endl;
   }
 
   system("pause");

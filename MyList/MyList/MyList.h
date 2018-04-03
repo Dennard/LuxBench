@@ -4,14 +4,41 @@
 #include "ListObject.h"
 
 template <class T>
+class MyListIterator {
+public:
+  ListObject<T>* current;
+
+  void operator++() {
+    current = current->prev;
+  }
+
+  void operator--() {
+    current = current->next;
+  }
+
+  ListObject<T>* operator->() {
+    return current;
+  }
+
+  bool operator==(const MyListIterator<T>& obj) {
+    return this->current == obj.current;
+  }
+
+  bool operator!=(const MyListIterator<T>& obj) {
+    return current != obj.current;
+  }
+
+};
+
+template <class T>
 class MyList {
 public:
 
   T& front();
   T& back();
 
-  ListObject<T>* begin();
-  ListObject<T>* end();
+  MyListIterator<T> begin();
+  MyListIterator<T> end();
 
   void push_back(T val);
   void push_front(T val);
@@ -19,6 +46,8 @@ public:
   int size() const;
 
 private:
+
+  MyListIterator<T> iterator;
 
   ListObject<T>* frontElement;
   ListObject<T>* backElement;
@@ -40,15 +69,17 @@ inline T & MyList<T>::back()
 }
 
 template<class T>
-inline ListObject<T>* MyList<T>::begin()
+inline MyListIterator<T> MyList<T>::begin()
 {
-  return frontElement;
+  iterator.current = frontElement;
+  return iterator;
 }
 
 template<class T>
-inline ListObject<T>* MyList<T>::end()
+inline MyListIterator<T> MyList<T>::end()
 {
-  return backElement->prev;
+  iterator.current = backElement->prev;
+  return iterator;
 }
 
 template<class T>
@@ -75,7 +106,6 @@ inline void MyList<T>::push_back(T val)
     backElement->next = temp;
     temp->prev = backElement;
   }
-
   list_size++;
 }
 
@@ -103,7 +133,6 @@ inline void MyList<T>::push_front(T val)
     frontElement->prev = temp;
     temp->next = frontElement;
   }
-
   list_size++;
 }
 
